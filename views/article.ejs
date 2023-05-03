@@ -1,0 +1,36 @@
+<%- include('includes/head.ejs') %>
+
+    <body>
+        <header>
+            <%- include('includes/navigation.ejs') %>
+        </header>
+
+        <main class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="mt-5 mb-3">
+                        <%= article.title %>
+                    </h1>
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <%= article.tags %>
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <%= article.content %>
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <%= article.code %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <%- include('includes/end.ejs') %>
+    </body>

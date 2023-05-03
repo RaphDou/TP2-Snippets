@@ -1,0 +1,62 @@
+<%- include('includes/head.ejs') %>
+
+  <body>
+    <header>
+      <%- include('includes/navigation.ejs') %>
+    </header>
+
+    <main class="container mt-4 card mb-5 mt-5 p-5 text-dark">
+      <form action="/edit-article" method="POST" class="was-validated">
+        <% if (errorMessage) { %>
+          <div class="errors alert alert-danger">
+            Veuillez corriger les erreurs.
+          </div>
+          <% } %>
+            <div class="form-group">
+              <label for="title">Titre</label>
+              <input type="text" name="title" value="<%= article.title %>"
+                class="form-control <%= errorMessage && errorMessage.title ? 'is-invalid' : '' %>">
+              <% if (errorMessage && errorMessage.title) { %>
+                <div class="invalid-feedback">
+                  <%= errorMessage.title.message %>
+                </div>
+                <% } %>
+            </div>
+            <div class="form-group">
+              <label for="content">Contenu</label>
+              <textarea name="content" id="" cols="30" rows="10"
+                class="form-control <%= errorMessage && errorMessage.content ? 'is-invalid' : '' %>"><%= article.content %></textarea>
+              <% if (errorMessage && errorMessage.content) { %>
+                <div class="invalid-feedback">
+                  <%= errorMessage.content.message %>
+                </div>
+                <% } %>
+            </div>
+            <div class="form-group">
+              <label for="code">Code</label>
+              <textarea name="code" id="" cols="30" rows="10"
+                class="form-control <%= errorMessage && errorMessage.code ? 'is-invalid' : '' %>"><%= article.code %></textarea>
+              <% if (errorMessage && errorMessage.code) { %>
+                <div class="invalid-feedback">
+                  <%= errorMessage.code.message %>
+                </div>
+                <% } %>
+            </div>
+            <div class="form-group">
+              <label for="tags">Tags</label>
+              <input type="text" name="tags" value="<%= article.tags %>"
+                class="form-control <%= errorMessage && errorMessage.tags ? 'is-invalid' : '' %>">
+              <% if (errorMessage && errorMessage.tags) { %>
+                <div class="invalid-feedback">
+                  <%= errorMessage.tags.message %>
+                </div>
+                <% } %>
+            </div>
+
+            <input type="hidden" name="articleId" value="<%= article._id %>">
+
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+      </form>
+    </main>
+
+    <%- include('includes/end.ejs') %>

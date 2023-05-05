@@ -1,0 +1,28 @@
+<%- include('includes/head.ejs') %>
+
+<body>
+  <header>
+    <%- include('includes/navigation.ejs') %>
+  </header>
+
+  <main class="container mt-3 mb-5 text-center">
+    <h1 class="display-4 mb-4">#<%= tag %></h1>
+    <% if (articles.length > 0) { %>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <% for (let article of articles) { %>
+          <article class="col mb-5">
+            <div class="card shadow">
+              <div class="card-body">
+                <h2 class="card-title">
+                  <%= article.title %>
+                </h2>
+                <p class="card-text">
+                  <% for (let tag of article.tags.split(',')) { %>
+                    <a href="/tag/<%= tag.trim() %>">#<%= tag.trim() %></a>
+                  <% } %>
+                </p>
+              </div>
+              <div class="card-footer bg-white">
+                <div class="btn-group" role="group" aria-label="Actions">
+                  <a href="/article/<%= article.id %>" class="btn btn-success"><i class="bi bi-eye"></i> Voir</a>
+                  <a href="/edit-article/<%= article.id %>" class="btn btn-warning"><i class="bi bi-pencil"></i> Editer</a

@@ -1,0 +1,49 @@
+  @font-face {
+      font-family: 'Charlie Display';
+      src: url('chemin/vers/charlie-display.woff2') format('woff2'),
+          url('chemin/vers/charlie-display.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+  }
+
+  body {
+      background-image: linear-gradient(to bottom, #265d00, #4b8d1c, #80b659);
+      font-family: 'Charlie Display', sans-serif;
+  }
+
+  h2{
+    font-weight: bold;
+    font-size:xx-large
+  }
+
+  P{
+    font-size: large;
+  }
+
+  p :active {
+      animation: pulse 0.5s;
+  }
+
+  @keyframes pulse {
+      0% {
+          transform: scale(1);
+      }
+
+      50% {
+          transform: scale(1.2);
+      }
+
+      100% {
+          transform: scale(1);
+      }
+  }
+
+  p :hover {
+      background-color: #ff0000;
+      color: #fff;
+  }
+
+  h1 {
+      font-weight: bold;
+  }

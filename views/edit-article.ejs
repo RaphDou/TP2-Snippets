@@ -5,8 +5,10 @@
       <%- include('includes/navigation.ejs') %>
     </header>
 
+    <h1 class="mb-4">Modification de snippets</h1>
+
     <main class="container mt-4 card mb-5 mt-5 p-5 text-dark">
-      <form action="/edit-article" method="POST" class="was-validated">
+      <form action="/edit-article" method="POST" class=" border-dark">
         <% if (errorMessage) { %>
           <div class="errors alert alert-danger">
             Veuillez corriger les erreurs.

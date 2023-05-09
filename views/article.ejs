@@ -4,27 +4,32 @@
         <header>
             <%- include('includes/navigation.ejs') %>
         </header>
-
+        <%- include('includes/background.ejs') %>
         <main class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1 class="mt-5 mb-3">
-                        <%= article.title %>
+                    <h1 class="mt-5 mb-3 text-light">
+                        Titre: <%= article.title %>
                     </h1>
                     <div class="card">
                         <div class="card-body">
                             <p class="card-text">
-                                <%= article.tags %>
+                                Tag: <%= article.tags %>
                             </p>
                         </div>
                         <div class="card-body">
                             <p class="card-text">
-                                <%= article.content %>
+                                Contenu: <%= article.content %>
                             </p>
                         </div>
                         <div class="card-body">
                             <p class="card-text">
-                                <%= article.code %>
+                                Code: <%= article.code %>
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                Créé le: <%= formatDate(article.createdAt) %> à <%= formatTime(article.createdAt) %>
                             </p>
                         </div>
                     </div>
@@ -32,5 +37,10 @@
             </div>
         </main>
 
-        <%- include('includes/end.ejs') %>
+        <% function formatDate(date) { const options={ weekday: 'long' , year: 'numeric' , month: 'long' ,
+            day: 'numeric' }; return new Date(date).toLocaleDateString('fr-FR', options); } function formatTime(date) {
+            const options={ hour: 'numeric' , minute: 'numeric' }; return new Date(date).toLocaleTimeString('fr-FR',
+            options).replace(/:\d{2}\s/, ' ' ); } %>
+
+            <%- include('includes/end.ejs') %>
     </body>

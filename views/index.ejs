@@ -5,6 +5,8 @@
       <%- include('includes/navigation.ejs') %>
     </header>
 
+<main class="container mt-3 mb-5 text-center">
+
     <% if (articles.length> 0) { %>
       <h1 class="mb-4 text-light mt-5 text-center">Étiquettes</h1>
       <div class=" container row row-cols-1 row-cols-md-2 g-4">
@@ -12,7 +14,9 @@
           <article class="col mb-5">
             <div class="card shadow">
               <div class="card-body">
-                <h1 class="mb-4 mt-5 tag-filter" data-tag="<%= article.tags %>"><%= article.tags %></h1>
+                <h1 class="mb-4 mt-5 tag-filter" data-tags="<%= article.tags %>">
+                  <%= article.tags %>
+                </h1>
               </div>
               <div class="card-footer bg-white">
                 <div class="btn-group" role="group" aria-label="Actions">
@@ -22,8 +26,8 @@
               </div>
             </div>
           </article>
-        <% } %>
-        
+          <% } %>
+
       </div>
       <% } else { %>
         <section class="container mt-5">
@@ -35,28 +39,28 @@
         </section>
         <% } %>
 
-        <script>
-          const tags = document.querySelectorAll('.tag-filter');
-          tags.forEach(tag => {
-            tag.addEventListener('click', () => {
-              const tagValue = tag.dataset.tag;
-              const articles = document.querySelectorAll('.col');
-              articles.forEach(article => {
-                if (!article.querySelector(`[data-tag="${tagValue}"]`)) {
-                  article.style.display = 'none';
-                } else {
-                  article.style.display = 'block';
-                }
+          <script>
+            const tags = document.querySelectorAll('.tags-filter');
+            tags.forEach(tag => {
+              tags.addEventListener('click', () => {
+                const tagsValue = tags.dataset.tags;
+                const articles = document.querySelectorAll('.col');
+                articles.forEach(article => {
+                  if (!article.querySelector(`[data-tags="${tagsValue}"]`)) {
+                    article.style.display = 'none';
+                  } else {
+                    article.style.display = 'block';
+                  }
+                });
               });
             });
-          });
-        </script>
-        
+          </script>
 
 
 
 
-          <main class="container mt-3 mb-5 text-center">
+
+          
             <% if (articles.length> 0) { %>
               <h1 class="mb-4 text-light mt-5">Mes Snippets</h1>
               <div class="row row-cols-1 row-cols-md-2 g-4">

@@ -5,9 +5,12 @@
       <%- include('includes/navigation.ejs') %>
     </header>
 
-<h1 class="mb-4">Formulaire d'ajout de snippets</h1>
+<h1 class="mb-4 text-center mt-5 text-light">Formulaire d'ajout de snippets</h1>
 
     <main class="container mt-4 card mb-5 mt-5 p-5 text-dark">
+
+      <p></p>
+
       <form action="/add-article" method="POST" class="was-validated">
         <% if (errorMessage) { %>
           <div class="errors alert alert-danger">

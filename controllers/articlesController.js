@@ -46,13 +46,13 @@ exports.getAddArticle = (req, res, next) => {
 };
 
 exports.createArticle = (req, res, next) => {
-  const { title, content, code, tags } = req.body
+  const { title, content, tags, url } = req.body
 
   const article = new Article({
     title: title,
     content: content,
-    code: code,
-    tags: tags
+    tags: tags,
+    url: url
   });
 
   article.save()
@@ -85,14 +85,14 @@ exports.getEditArticle = (req, res, next) => {
 
 
 exports.updateArticle = (req, res, next) => {
-  const { articleId, title, content, code, tags } = req.body
+  const { articleId, title, content, tags, url } = req.body
 
   Article.findById(articleId)
     .then(article => {
       article.title = title;
       article.content = content;
-      article.code = code;
       article.tags = tags;
+      article.url = url;
       return article.save()
     })
     .then(result => {
@@ -106,8 +106,8 @@ exports.updateArticle = (req, res, next) => {
           _id: articleId,
           title: title,
           content: content,
-          code: code,
-          tags: tags
+          tags: tags,
+          url: url
         }
       })
     })

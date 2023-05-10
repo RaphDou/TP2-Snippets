@@ -1,46 +1,56 @@
 <%- include('includes/head.ejs') %>
 
-    <body>
-        <header>
-            <%- include('includes/navigation.ejs') %>
-        </header>
-        <%- include('includes/background.ejs') %>
-        <main class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1 class="mt-5 mb-3 text-light">
-                        Titre: <%= article.title %>
-                    </h1>
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="card-text">
-                                Tag: <%= article.tags %>
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                Contenu: <%= article.content %>
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                Code: <%= article.code %>
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                Créé le: <%= formatDate(article.createdAt) %> à <%= formatTime(article.createdAt) %>
-                            </p>
-                        </div>
+<body>
+    <header>
+        <%- include('includes/navigation.ejs') %>
+    </header>
+    <main class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mt-5 mb-3 text-light">
+                    Titre:
+                    <% if (isValidUrl(article.title)) { %>
+                        <a target="_blank" class="mt-5 mb-3 text-light" href="<%= article.title %>">
+                            <%= article.title %>
+                        </a>
+                    <% } else { %>
+                        <%= article.title %>
+                    <% } %>
+                </h1>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="mt-5 mb-3">
+                            Contenu: <%= article.content %>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <p class="mt-5 mb-3">
+                            Tag: <%= article.tags %>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <p class="mt-5 mb-3">
+                            Créé le: <%= formatDate(article.createdAt) %> à <%= formatTime(article.createdAt) %>
+                        </p>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <% function formatDate(date) { const options={ weekday: 'long' , year: 'numeric' , month: 'long' ,
-            day: 'numeric' }; return new Date(date).toLocaleDateString('fr-FR', options); } function formatTime(date) {
-            const options={ hour: 'numeric' , minute: 'numeric' }; return new Date(date).toLocaleTimeString('fr-FR',
-            options).replace(/:\d{2}\s/, ' ' ); } %>
+    <% function formatDate(date) { const options={ weekday: 'long' , year: 'numeric' , month: 'long' ,
+        day: 'numeric' }; return new Date(date).toLocaleDateString('fr-FR', options); } function
+        formatTime(date) { const options={ hour: 'numeric' , minute: 'numeric' }; return new
+        Date(date).toLocaleTimeString('fr-FR', options).replace(/:\d{2}\s/, ' ' ); } %>
 
-            <%- include('includes/end.ejs') %>
-    </body>
+    <%- include('includes/end.ejs') %>
+</body>
+
+<% function isValidUrl(url) { %>
+    <% try { %>
+        <% new URL(url); %>
+        <% return true; %>
+    <% } catch (_) { %>
+        <% return false; %>
+    <% } %>
+<% } %>

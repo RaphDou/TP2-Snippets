@@ -4,19 +4,19 @@
     <header>
         <%- include('includes/navigation.ejs') %>
     </header>
-    <main class="container">
+    <main class="container mb-5">
         <div class="row">
-            <div class="col-12">
-                <h1 class="mt-5 mb-3 text-light">
-                    Titre:
-                    <% if (isValidUrl(snippet.title)) { %>
-                        <a target="_blank" class="mt-5 mb-3 text-light" href="<%= snippet.title %>">
-                            <%= snippet.title %>
-                        </a>
-                    <% } else { %>
+            <div class="col-12 mt-5 mb-5">
+                <h2 class="card-title text-light">
+                    Titre: 
+                    <% if (snippet.url) { %>
+                      <a target="_blank" class="mt-5 mb-3 text-light" href="<%= snippet.url %>">
                         <%= snippet.title %>
-                    <% } %>
-                </h1>
+                      </a>
+                      <% } else { %>
+                        <%= snippet.title %>
+                          <% } %>
+                  </h2>
                 <div class="card">
                     <div class="card-body">
                         <p class="mt-5 mb-3">

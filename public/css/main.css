@@ -9,6 +9,28 @@
 
 body {
   background: linear-gradient(90deg, rgb(82, 67, 170), rgb(237, 80, 180)) 0% 0% / auto repeat scroll padding-box border-box rgb(82, 67, 170);
+  font-family: 'Charlie Display', sans-serif;
+}
+
+.bg-tags {
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgb(82, 67, 170), rgb(237, 80, 180)) 0% 0% / auto repeat scroll padding-box border-box rgb(82, 67, 170);
+  background-size: 1800% 1800%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .navbar-position {

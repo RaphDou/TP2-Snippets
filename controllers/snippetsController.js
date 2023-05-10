@@ -46,26 +46,30 @@ exports.getAddSnippet = (req, res, next) => {
 };
 
 exports.createSnippet = (req, res, next) => {
-  const { title, content, tags, url } = req.body
+  const { title, content, tags, url } = req.body;
+
+  const tagArray = tags.split(',').map(tag => tag.trim());
 
   const snippet = new Snippet({
     title: title,
     content: content,
-    tags: tags,
+    tags: tagArray,
     url: url
   });
 
   snippet.save()
     .then(result => {
-      res.redirect('/')
+      res.redirect('/');
     })
     .catch(err => {
       return res.render('add-snippet', {
         pageTitle: "Ajouter un snippet",
         errorMessage: err.errors
-      })
-    })
-}
+      });
+    });
+};
+
+
 
 
 exports.getEditSnippet = (req, res, next) => {
@@ -73,7 +77,7 @@ exports.getEditSnippet = (req, res, next) => {
   Snippet.findById(snippetId)
     .then(snippet => {
       res.render('edit-snippet', {
-        pageTitle: "Modifier l'snippet",
+        pageTitle: "Modifier le snippet",
         snippet: snippet,
         errorMessage: null
       })
@@ -100,7 +104,7 @@ exports.updateSnippet = (req, res, next) => {
     })
     .catch(err => {
       return res.render('edit-snippet', {
-        pageTitle: "Modifier l'snippet",
+        pageTitle: "Modifier le snippet",
         errorMessage: err.errors,
         snippet: {
           _id: snippetId,
@@ -124,3 +128,18 @@ exports.deleteSnippet = (req, res, next) => {
       console.log('err', err)
     })
 }
+
+exports.getSnippetsByTag = (req, res, next) => {
+  const tag = req.params.tag;
+  Snippet.find({ tags: tag })
+    .then(snippets => {
+      res.render('tag', {
+        snippets: snippets,
+        pageTitle: `Snippets avec le tag "${tag}"`
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.redirect('/');
+    });
+};

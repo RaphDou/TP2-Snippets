@@ -7,108 +7,78 @@
 
     <main class="container mt-3 mb-5 text-center">
 
-
       <% if (snippets.length> 0) { %>
         <h1 class="mb-4 text-light mt-5 text-center">Étiquettes</h1>
-        <div class=" container row row-cols-1 row-cols-md-2 g-4">
-          <% for (let snippet of snippets) { %>
-            <snippet class="col mb-5">
-              <div class="card shadow">
-                <div class="card-body">
-                  <h1 class="mb-4 mt-5 tag-filter" data-tags="<%= snippet.tags %>">
-                    <%= snippet.tags %>
-                  </h1>
-                </div>
-              </div>
-            </snippet>
-            <% } %>
-
+        <div class="container bg bg-tags g-4 p-3">
+          <% let uniqueTags=new Set(); %>
+            <% for (let snippet of snippets) { %>
+              <% if (snippet.tags && snippet.tags.length> 0) { %>
+                <% for (let tag of snippet.tags) { %>
+                  <% uniqueTags.add(tag); %>
+                    <% } %>
+                      <% } %>
+                        <% } %>
+                          <% for (let tag of uniqueTags) { %>
+                            <a href="/tag/<%= tag %>" class="btn btn-light tag"><%= tag %></a>
+                            <% } %>
         </div>
-        <% } else { %>
-          <section class="container mt-5">
-            <div class="row justify-content-center">
-              <div class="col-md-6 text-center">
-                <h1 class="text-light">Aucun tags!</h1>
-              </div>
-            </div>
-          </section>
-          <% } %>
+        <% } %>
 
-            <script>
-              const tags = document.querySelectorAll('.tags-filter');
-              tags.forEach(tag => {
-                tags.addEventListener('click', () => {
-                  const tagsValue = tags.dataset.tags;
-                  const snippets = document.querySelectorAll('.col');
-                  snippets.forEach(snippet => {
-                    if (!snippet.querySelector(`[data-tags="${tagsValue}"]`)) {
-                      snippet.style.display = 'none';
-                    } else {
-                      snippet.style.display = 'block';
-                    }
-                  });
-                });
-              });
-            </script>
-
-
-
-
-
-
-            <% if (snippets.length> 0) { %>
-              <h1 class="mb-4 text-light mt-5">Mes Snippets</h1>
-              <div class="row row-cols-1 row-cols-md-2 g-4">
-                <% snippets.sort((a, b)=> new Date(b.createdAt) - new Date(a.createdAt)); %>
-                  <% for (let snippet of snippets) { %>
-                    <snippet class="col mb-5">
-                      <div class="card shadow">
-                        <div class="card-body">
-                          <h2 class="card-title">
-                            <% if (snippet.url) { %>
-                              <a target="_blank" class="mt-5 mb-3 text-dark" href="<%= snippet.url %>">
-                                <%= snippet.title %>
-                              </a>
-                              <% } else { %>
-                                <%= snippet.title %>
-                                  <% } %>
-                          </h2>
-                          <p class="card-text">
-                            <%= snippet.tags %>
-                          </p>
-                        </div>
-                        <div class="card-text">
-                          <p>
-                            Créé le: <%= formatDate(snippet.createdAt) %> à <%= formatTime(snippet.createdAt) %>
-                          </p>
-                        </div>
-                        <div class="card-footer bg-white">
-                          <div class="btn-group" role="group" aria-label="Actions">
-                            <a href="/snippet/<%= snippet.id %>" class="btn btn-success"><i class="bi bi-eye"></i>
-                              Voir</a>
-                            <a href="/edit-snippet/<%= snippet.id %>" class="btn btn-warning"><i
-                                class="bi bi-pencil"></i> Editer</a>
-                            <a href="/delete/<%= snippet.id %>" class="btn btn-danger"
-                              onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce snippet ?')"><i
-                                class="bi bi-trash"></i> Supprimer</a>
-                          </div>
+          <% if (snippets.length> 0) { %>
+            <h1 class="mb-4 text-light mt-5">Mes Snippets</h1>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+              <% snippets.sort((a, b)=> new Date(b.createdAt) - new Date(a.createdAt)); %>
+                <% for (let snippet of snippets) { %>
+                  <snippet class="col mb-5">
+                    <div class="card shadow">
+                      <div class="card-body">
+                        <h2 class="card-title">
+                          <% if (snippet.url) { %>
+                            <a target="_blank" class="mt-5 mb-3 text-dark" href="<%= snippet.url %>">
+                              Titre: <%= snippet.title %>
+                            </a>
+                            <% } else { %>
+                              Titre: <%= snippet.title %>
+                                <% } %>
+                        </h2>
+                        <p class="card-text">
+                          <% for (let tag of snippet.tags) { %>
+                            <a href="/tag/<%= tag %>" class="btn tag text-dark mb-2">Tag: <%= tag %></a>
+                            <% } %>
+                        </p>
+                      </div>
+                      <div class="card-text">
+                        <p>
+                          Créé le : <%= formatDate(snippet.createdAt) %> à <%= formatTime(snippet.createdAt) %>
+                        </p>
+                      </div>
+                      <div class="card-footer bg-white">
+                        <div class="btn-group" role="group" aria-label="Actions">
+                          <a href="/snippet/<%= snippet.id %>" class="btn btn-success"><i class="bi bi-eye"></i>
+                            Voir</a>
+                          <a href="/edit-snippet/<%= snippet.id %>" class="btn btn-warning"><i class="bi bi-pencil"></i>
+                            Editer</a>
+                          <a href="/delete/<%= snippet.id %>" class="btn btn-danger"
+                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce snippet ?')"><i
+                              class="bi bi-trash"></i> Supprimer</a>
                         </div>
                       </div>
-                    </snippet>
-                    <% } %>
-              </div>
-              <% } else { %>
-                <section class="container mt-5">
-                  <div class="row justify-content-center">
-                    <div class="col-md-6 text-center">
-                      <h1 class="display-4 text-light">:&#40;</h1>
-                      <p class="lead text-light">Il ne semble pas avoir de snippets pour l'instant!</p>
-                      <a href="add-snippet" class="btn btn-primary"><i class="bi bi-house-door"></i> Je veux créer un
-                        snippet!</a>
                     </div>
+                  </snippet>
+                  <% } %>
+            </div>
+            <% } else { %>
+              <section class="container mt-5">
+                <div class="row justify-content-center">
+                  <div class="col-md-6 text-center">
+                    <h1 class="display-4 text-light">:&#40;</h1>
+                    <p class="lead text-light">Il ne semble pas avoir de snippets pour l'instant!</p>
+                    <a href="add-snippet" class="btn btn-primary"><i class="bi bi-house-door"></i> Je veux créer un
+                      snippet!</a>
                   </div>
-                </section>
-                <% } %>
+                </div>
+              </section>
+              <% } %>
 
     </main>
 

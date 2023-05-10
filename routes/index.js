@@ -25,6 +25,9 @@ router.post('/edit-snippet', snippetsController.updateSnippet);
 // // /delete/:snippetId => GET
 router.get('/delete/:snippetId', snippetsController.deleteSnippet);
 
+// /tag/:tag => GET
+router.get('/tag/:tag', snippetsController.getSnippetsByTag);
+
 // Export des routes pour utilisation dans app.js
 module.exports = router;
 

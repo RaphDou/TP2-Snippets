@@ -28,7 +28,7 @@ body {
   height: 50px;
 }
 
-.nav-article-link {
+.nav-snippet-link {
   background-color: rgb(82, 67, 170);
   color: rgb(255, 255, 255);
   font-size: 1.2rem;
@@ -37,7 +37,7 @@ body {
   border-radius: 5px;
 }
 
-.nav-article-link:hover {
+.nav-snippet-link:hover {
   text-decoration: none;
   color: white;
 }

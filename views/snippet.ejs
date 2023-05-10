@@ -9,28 +9,28 @@
             <div class="col-12">
                 <h1 class="mt-5 mb-3 text-light">
                     Titre:
-                    <% if (isValidUrl(article.title)) { %>
-                        <a target="_blank" class="mt-5 mb-3 text-light" href="<%= article.title %>">
-                            <%= article.title %>
+                    <% if (isValidUrl(snippet.title)) { %>
+                        <a target="_blank" class="mt-5 mb-3 text-light" href="<%= snippet.title %>">
+                            <%= snippet.title %>
                         </a>
                     <% } else { %>
-                        <%= article.title %>
+                        <%= snippet.title %>
                     <% } %>
                 </h1>
                 <div class="card">
                     <div class="card-body">
                         <p class="mt-5 mb-3">
-                            Contenu: <%= article.content %>
+                            Contenu: <%= snippet.content %>
                         </p>
                     </div>
                     <div class="card-body">
                         <p class="mt-5 mb-3">
-                            Tag: <%= article.tags %>
+                            Tag: <%= snippet.tags %>
                         </p>
                     </div>
                     <div class="card-body">
                         <p class="mt-5 mb-3">
-                            Créé le: <%= formatDate(article.createdAt) %> à <%= formatTime(article.createdAt) %>
+                            Créé le: <%= formatDate(snippet.createdAt) %> à <%= formatTime(snippet.createdAt) %>
                         </p>
                     </div>
                 </div>

@@ -2,28 +2,28 @@
 
 const express = require('express');
 const router = express.Router();
-const articlesController = require('../controllers/articlesController');
+const snippetsController = require('../controllers/snippetsController');
 
 // / => GET
-router.get('/', articlesController.getArticles);
+router.get('/', snippetsController.getSnippets);
 
-// /article/`articleId => GET
-router.get('/article/:articleId', articlesController.getArticle);
+// /snippet/`snippetId => GET
+router.get('/snippet/:snippetId', snippetsController.getSnippet);
 
-// /add-article => GET
-router.get('/add-article', articlesController.getAddArticle);
+// /add-snippet => GET
+router.get('/add-snippet', snippetsController.getAddSnippet);
 
-// // /add-article => POST
-router.post('/add-article', articlesController.createArticle);
+// // /add-snippet => POST
+router.post('/add-snippet', snippetsController.createSnippet);
 
-// // /edit/:articleId => GET
-router.get('/edit-article/:articleId', articlesController.getEditArticle);
+// // /edit/:snippetId => GET
+router.get('/edit-snippet/:snippetId', snippetsController.getEditSnippet);
 
-// // /edit-article => POST
-router.post('/edit-article', articlesController.updateArticle);
+// // /edit-snippet => POST
+router.post('/edit-snippet', snippetsController.updateSnippet);
 
-// // /delete/:articleId => GET
-router.get('/delete/:articleId', articlesController.deleteArticle);
+// // /delete/:snippetId => GET
+router.get('/delete/:snippetId', snippetsController.deleteSnippet);
 
 // Export des routes pour utilisation dans app.js
 module.exports = router;

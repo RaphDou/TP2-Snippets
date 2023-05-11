@@ -70,3 +70,11 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.has-error .form-control {
+  border-color: red;
+}
+
+.has-error .invalid-feedback {
+  display: block;
+}

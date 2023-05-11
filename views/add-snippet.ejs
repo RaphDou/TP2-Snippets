@@ -15,10 +15,10 @@
     </div>
     <% } %>
 
-    <form action="/add-snippet" method="POST" class="was-validated">
+    <form action="/add-snippet" method="POST" class="was-validated <%= errorMessage ? 'has-error' : '' %>">
       <div class="form-group">
         <label for="title">Titre</label>
-        <input type="text" name="title" class="form-control is-invalid" required>
+        <input type="text" maxlength="255" name="title" class="form-control <%= errorMessage && errorMessage.title ? 'is-invalid' : '' %>" required>
         <% if (errorMessage && errorMessage.title) { %>
         <div class="invalid-feedback">
           <%= errorMessage.title.message %>
@@ -28,7 +28,7 @@
 
       <div class="form-group">
         <label for="url">URL</label>
-        <input type="text" name="url" class="form-control">
+        <input type="text" name="url" class="form-control <%= errorMessage && errorMessage.url ? 'is-invalid' : '' %>">
         <% if (errorMessage && errorMessage.url) { %>
         <div class="invalid-feedback">
           <%= errorMessage.url.message %>
@@ -38,7 +38,7 @@
 
       <div class="form-group">
         <label for="content">Contenu</label>
-        <textarea name="content" cols="30" rows="10" class="form-control"></textarea>
+        <textarea name="content" cols="30" rows="10" class="form-control <%= errorMessage && errorMessage.content ? 'is-invalid' : '' %>"></textarea>
         <% if (errorMessage && errorMessage.content) { %>
         <div class="invalid-feedback">
           <%= errorMessage.content.message %>

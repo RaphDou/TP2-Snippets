@@ -16,7 +16,7 @@
             <% } %>
               <div class="form-group">
                 <label for="title">Titre</label>
-                <input type="text" name="title" value="<%= snippet.title %>"
+                <input maxlength="255" type="text" name="title" value="<%= snippet.title %>"
                   class="form-control <%= errorMessage && errorMessage.title ? 'is-invalid' : '' %>">
                 <% if (errorMessage && errorMessage.title) { %>
                   <div class="invalid-feedback">

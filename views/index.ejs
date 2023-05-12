@@ -6,7 +6,6 @@
     </header>
 
     <main class="container mt-3 mb-5 text-center">
-
       <% if (snippets.length> 0) { %>
         <h1 class="mb-4 text-light mt-5 text-center">Étiquettes</h1>
         <div class="container bg bg-tags g-4 p-3">
@@ -32,7 +31,7 @@
 
           <% if (snippets.length> 0) { %>
             <h1 class="mb-4 text-light mt-5">Mes Snippets</h1>
-            <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div>
               <% snippets.sort((a, b)=> new Date(a.createdAt) - new Date(b.createdAt)); %>
                 <% for (let snippet of snippets) { %>
                   <snippet class="col mb-5">
@@ -54,13 +53,14 @@
 
                         <div>
                           <p>
-                            <% if (snippet.content.trim() !=='' ) { %>
+                            <% if (snippet.tags && snippet.tags.length> 0) { %>
                               Tag(s): <%= snippet.tags %>
                                 <% } else { %>
-                                  Il n'y pas de tags ici!
+                                  Il n'y a pas de tags ici!
                                   <% } %>
                           </p>
                         </div>
+
                       </div>
                       <div>
                         <p>
@@ -80,8 +80,8 @@
                         <div class="btn-group" role="group" aria-label="Actions">
                           <a href="/snippet/<%= snippet.id %>" class="btn btn-success"><i class="bi bi-eye"></i>
                             Voir</a>
-                          <a href="/edit-snippet/<%= snippet.id %>" class="btn btn-warning"><i class="bi bi-pencil"></i>
-                            Editer</a>
+                          <a href="/edit-snippet/<%= snippet.id %>" class="btn btn-warning"><i class="bi bi-pencil"></
+                                i> Editer</a>
                           <a href="/delete/<%= snippet.id %>" class="btn btn-danger"
                             onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce snippet ?')"><i
                               class="bi bi-trash"></i> Supprimer</a>

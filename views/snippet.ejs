@@ -1,56 +1,56 @@
 <%- include('includes/head.ejs') %>
 
-<body>
-    <header>
-        <%- include('includes/navigation.ejs') %>
-    </header>
-    <main class="container mb-5">
-        <div class="row">
-            <div class="col-12 mt-5 mb-5">
-                <h2 class="card-title text-light">
-                    Titre: 
-                    <% if (snippet.url) { %>
-                      <a target="_blank" class="mt-5 mb-3 text-light" href="<%= snippet.url %>">
-                        <%= snippet.title %>
-                      </a>
-                      <% } else { %>
-                        <%= snippet.title %>
-                          <% } %>
-                  </h2>
-                <div class="card">
-                    <div class="card-body">
-                        <p class="mt-5 mb-3">
-                            Contenu: <%= snippet.content %>
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <p class="mt-5 mb-3">
-                            Tag: <%= snippet.tags %>
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <p class="mt-5 mb-3">
-                            Créé le: <%= formatDate(snippet.createdAt) %> à <%= formatTime(snippet.createdAt) %>
-                        </p>
+    <body>
+        <header>
+            <%- include('includes/navigation.ejs') %>
+        </header>
+        <main class="container mb-5">
+            <div class="row">
+                <div class="col-12 mt-5 mb-5">
+                    <h2 class="card-title text-light">
+                        Titre:
+                        <% if (snippet.url) { %>
+                            <a target="_blank" class="mt-5 mb-3 text-light" href="<%= snippet.url %>">
+                                <%= snippet.title %>
+                            </a>
+                            <% } else { %>
+                                <%= snippet.title %>
+                                    <% } %>
+                    </h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="mt-5 mb-3">
+                                Contenu: <%= snippet.content %>
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <p class="mt-5 mb-3">
+                                Tag: <%= snippet.tags %>
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <p class="mt-5 mb-3">
+                                Créé le: <%= formatDate(snippet.createdAt) %> à <%= formatTime(snippet.createdAt) %>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <% function formatDate(date) { const options={ weekday: 'long' , year: 'numeric' , month: 'long' ,
-        day: 'numeric' }; return new Date(date).toLocaleDateString('fr-FR', options); } function
-        formatTime(date) { const options={ hour: 'numeric' , minute: 'numeric' }; return new
-        Date(date).toLocaleTimeString('fr-FR', options).replace(/:\d{2}\s/, ' ' ); } %>
+        <% function formatDate(date) { const options={ weekday: 'long' , year: 'numeric' , month: 'long' ,
+            day: 'numeric' }; return new Date(date).toLocaleDateString('fr-FR', options); } function formatTime(date) {
+            const options={ hour: 'numeric' , minute: 'numeric' }; return new Date(date).toLocaleTimeString('fr-FR',
+            options).replace(/:\d{2}\s/, ' ' ); } %>
 
-    <%- include('includes/end.ejs') %>
-</body>
+            <%- include('includes/end.ejs') %>
+    </body>
 
-<% function isValidUrl(url) { %>
-    <% try { %>
-        <% new URL(url); %>
-        <% return true; %>
-    <% } catch (_) { %>
-        <% return false; %>
-    <% } %>
-<% } %>
+    <% function isValidUrl(url) { %>
+        <% try { %>
+            <% new URL(url); %>
+                <% return true; %>
+                    <% } catch (_) { %>
+                        <% return false; %>
+                            <% } %>
+                                <% } %>

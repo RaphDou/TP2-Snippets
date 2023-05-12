@@ -1,37 +1,46 @@
 <%- include('includes/head.ejs') %>
 
-<body>
-  <header>
-    <%- include('includes/navigation.ejs') %>
-  </header>
-  <%- include('includes/background.ejs') %>
+  <body>
+    <header>
+      <%- include('includes/navigation.ejs') %>
+    </header>
 
-  <h1 class="mb-4 text-center mt-5 text-light"><%= pageTitle %></h1>
+    <h1 class="mb-4 text-center mt-5 text-light">
+      <%= pageTitle %>
+    </h1>
 
-  <main class="container mt-4 card mb-5 mt-5 p-5 text-dark">
-    <% if (snippets.length > 0) { %>
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-        <% for (let snippet of snippets) { %>
-          <snippet class="col mb-5">
-            <div class="card shadow">
-              <div class="card-body">
-                <h2>Titre: <%= snippet.title %></h2>
-                <p>Contenu: <%= snippet.content %></p>
-                <p>Tags: <%= snippet.tags.join(', ') %></p>
+    <main class="container mt-4 card mb-5 mt-5 p-5 text-dark">
+      <% if (snippets.length> 0) { %>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <% for (let snippet of snippets) { %>
+            <div class="col mb-5">
+              <div class="card shadow">
+                <div class="card-body">
+                  <h2 class="card-title mb-3">
+                    <%= snippet.title %>
+                  </h2>
+                  <p class="card-text">
+                    <%= snippet.content %>
+                  </p>
+                  <p class="card-text">
+                    Tags: <%=
+                      snippet.tags.join(', ') %>
+                </p>
               </div>
               <div class="card-footer">
                 <a href="/snippet/<%= snippet.id %>" class="btn btn-success">Voir</a>
               </div>
             </div>
-          </snippet>
+          </div>
         <% } %>
       </div>
     <% } else { %>
       <div class="text-center">
-        <p>Aucun snippet trouvé avec le tag "<%= pageTitle.substring(pageTitle.lastIndexOf(' "') + 2, pageTitle.length - 1) %>"</p>
-      </div>
-    <% } %>
-  </main>
+        <p>Aucun snippet trouvé avec le tag "<%= pageTitle.substring(pageTitle.lastIndexOf(' "') + 2, pageTitle.length - 1) %>"
+                      </p>
+                </div>
+                <% } %>
+    </main>
 
-  <%- include('includes/end.ejs') %>
-</body>
+    <%- include('includes/end.ejs') %>
+  </body>

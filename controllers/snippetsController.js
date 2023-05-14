@@ -37,7 +37,7 @@ exports.getSnippet = (req, res, next) => {
     });
 };
 
-exports.getAddSnippet = (req, res, next) => {
+exports.getAddSnippet = (_req, res) => {
   res.render("add-snippet", {
     pageTitle: "Ajouter un snippet",
     errorMessage: null,
@@ -125,7 +125,7 @@ exports.deleteSnippet = (req, res, next) => {
     });
 };
 
-exports.getSnippetsByTag = (req, res, next) => {
+exports.getSnippetsByTag = (req, res) => {
   const tag = req.params.tag;
   Snippet.find({ tags: tag })
     .then((snippets) => {

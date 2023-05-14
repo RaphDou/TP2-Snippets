@@ -9,7 +9,7 @@
 
 body {
   border-radius: 2px;
-  background: linear-gradient(60deg, rgb(82, 67, 170), rgb(255, 255, 255)) 0% 0% / auto repeat scroll padding-box border-box rgb(82, 67, 170);
+  background: linear-gradient(60deg, rgb(82, 67, 170), rgba(255, 255, 255, 0.158), rgb(255, 173, 252)) 0% 0% / auto repeat scroll padding-box border-box rgb(82, 67, 170);
   background-size: 1800% 1800%;
   animation: gradientAnimation 15s ease infinite;
   font-family: "Raleway", sans-serif;
@@ -98,4 +98,11 @@ main {
 
 .has-error .invalid-feedback {
   display: block;
+}
+.img-404{
+  height: 200px;
+}
+
+img{
+border-radius: 5px;
 }

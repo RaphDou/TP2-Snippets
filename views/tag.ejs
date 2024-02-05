@@ -28,7 +28,7 @@
                 </p>
               </div>
               <div class="card-footer">
-                <a href="/snippet/<%= snippet.id %>" class="btn btn-success">Voir</a>
+                <a href="/snippet/<%= snippet.id %>" class="btn btn-success">View</a>
               </div>
             </div>
           </div>
@@ -36,8 +36,7 @@
       </div>
     <% } else { %>
       <div class="text-center">
-        <p>Aucun snippet trouvé avec le tag "<%= pageTitle.substring(pageTitle.lastIndexOf(' "') + 2, pageTitle.length - 1) %>"
-                      </p>
+        <p>No snippet found with tag "<%= pageTitle.substring(pageTitle.lastIndexOf(' "') + 2, pageTitle.length - 1) %>" </p>
                 </div>
                 <% } %>
     </main>

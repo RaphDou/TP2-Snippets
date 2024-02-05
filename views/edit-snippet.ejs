@@ -5,17 +5,17 @@
       <%- include('includes/navigation.ejs') %>
     </header>
 
-    <h1 class="mb-4 text-center mt-5 text-light">Modification de snippets</h1>
+    <h1 class="mb-4 text-center mt-5 text-light">Editing snippets</h1>
 
     <main class="container mt-4 card mb-5 mt-5 p-5 text-dark">
       <form action="/edit-snippet" method="POST" class="border-dark">
         <% if (errorMessage) { %>
           <div class="errors alert alert-danger">
-            Veuillez corriger les erreurs.
+            Please correct the errors.
           </div>
           <% } %>
             <div class="form-group">
-              <label for="title">Titre</label>
+              <label for="title">Title</label>
               <input maxlength="255" type="text" name="title" value="<%= snippet.title %>"
                 class="form-control <%= errorMessage && errorMessage.title ? 'is-invalid' : '' %>">
               <% if (errorMessage && errorMessage.title) { %>
@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-group">
-              <label for="content">Contenu</label>
+              <label for="content">Content</label>
               <textarea name="content" id="" cols="30" rows="10"
                 class="form-control <%= errorMessage && errorMessage.content ? 'is-invalid' : '' %>"><%= snippet.content %></textarea>
               <% if (errorMessage && errorMessage.content) { %>
@@ -60,7 +60,7 @@
 
             <input type="hidden" name="snippetId" value="<%= snippet._id %>">
 
-            <button type="submit" class="btn btn-primary">Modifier</button>
+            <button type="submit" class="btn btn-primary">Edit</button>
       </form>
     </main>
 

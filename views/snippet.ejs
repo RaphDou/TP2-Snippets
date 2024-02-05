@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12 mt-5 mb-5">
                     <h2 class="card-title text-light">
-                        Titre:
+                        Title:
                         <% if (snippet.url) { %>
                             <a target="_blank" class="mt-5 mb-3 text-light" href="<%= snippet.url %>">
                                 <%= snippet.title %>
@@ -20,7 +20,7 @@
                     <div class="card">
                         <div class="card-body">
                             <p class="mt-5 mb-3">
-                                Contenu: <%= snippet.content %>
+                                Content: <%= snippet.content %>
                             </p>
                         </div>
                         <div class="card-body">
@@ -30,7 +30,7 @@
                         </div>
                         <div class="card-body">
                             <p class="mt-5 mb-3">
-                                Créé le: <%= formatDate(snippet.createdAt) %> à <%= formatTime(snippet.createdAt) %>
+                                Created on: <%= formatDate(snippet.createdAt) %> at <%= formatTime(snippet.createdAt) %>
                             </p>
                         </div>
                     </div>
@@ -39,8 +39,8 @@
         </main>
 
         <% function formatDate(date) { const options={ weekday: 'long' , year: 'numeric' , month: 'long' ,
-            day: 'numeric' }; return new Date(date).toLocaleDateString('fr-FR', options); } function formatTime(date) {
-            const options={ hour: 'numeric' , minute: 'numeric' }; return new Date(date).toLocaleTimeString('fr-FR',
+            day: 'numeric' }; return new Date(date).toLocaleDateString('en-US', options); } function formatTime(date) {
+            const options={ hour: 'numeric' , minute: 'numeric' }; return new Date(date).toLocaleTimeString('en-US',
             options).replace(/:\d{2}\s/, ' ' ); } %>
 
             <%- include('includes/end.ejs') %>

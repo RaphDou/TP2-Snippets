@@ -9,7 +9,7 @@
 
 body {
   border-radius: 2px;
-  background: linear-gradient(60deg, rgb(82, 67, 170), rgba(255, 255, 255, 0.158), rgb(255, 173, 252)) 0% 0% / auto repeat scroll padding-box border-box rgb(82, 67, 170);
+  background: #111;
   background-size: 1800% 1800%;
   animation: gradientAnimation 15s ease infinite;
   font-family: "Raleway", sans-serif;
@@ -72,8 +72,8 @@ main {
 }
 
 .nav-snippet-link {
-  background-color: rgb(82, 67, 170);
-  color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  color: #111;
   font-size: 1.2rem;
   padding: 1rem;
   text-decoration: none;
@@ -82,7 +82,7 @@ main {
 
 .nav-snippet-link:hover {
   text-decoration: none;
-  color: white;
+  color: rgb(255, 0, 200);
 }
 
 .img-logo {

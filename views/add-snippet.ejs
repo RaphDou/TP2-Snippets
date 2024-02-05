@@ -5,18 +5,18 @@
       <%- include('includes/navigation.ejs') %>
     </header>
 
-    <h1 class="mb-4 text-center mt-5 text-light">Formulaire d'ajout de snippet</h1>
+    <h1 class="mb-4 text-center mt-5 text-light">Snippet Addition Form</h1>
 
     <main class="container mt-4 card mb-5 mt-5 p-5 text-dark">
       <% if (errorMessage) { %>
         <div class="errors alert alert-danger">
-          Veuillez corriger les erreurs.
+          Please correct the errors.
         </div>
         <% } %>
 
           <form action="/add-snippet" method="POST" class="border-dark">
             <div class="form-group">
-              <label for="title">Titre</label>
+              <label for="title">Title</label>
               <input type="text" maxlength="255" name="title"
                 class="form-control <%= errorMessage && errorMessage.title ? 'is-invalid' : '' %>" required>
               <% if (errorMessage && errorMessage.title) { %>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="form-group">
-              <label for="content">Contenu</label>
+              <label for="content">Content</label>
               <textarea name="content" cols="30" rows="10"
                 class="form-control <%= errorMessage && errorMessage.content ? 'is-invalid' : '' %>"></textarea>
               <% if (errorMessage && errorMessage.content) { %>
@@ -51,7 +51,7 @@
             <div class="form-group">
               <label for="tags">Tags</label>
               <input type="text" name="tags" class="form-control"
-                placeholder="Séparez les tags par des virgules s'il y en a plusieurs. (Ex: tag1,tag2,etc)">
+                placeholder="Separate tags with commas if there are multiple. (Ex: tag1,tag2,etc)">
               <% if (errorMessage && errorMessage.tags) { %>
                 <div class="invalid-feedback">
                   <%= errorMessage.tags.message %>
@@ -59,7 +59,7 @@
                 <% } %>
             </div>
 
-            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="submit" class="btn btn-primary">Add</button>
           </form>
     </main>
 

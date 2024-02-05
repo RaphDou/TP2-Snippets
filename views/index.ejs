@@ -7,7 +7,7 @@
 
     <main class="container mt-3 mb-5 text-center">
       <% if (snippets.length> 0) { %>
-        <h1 class="mb-4 text-light mt-5 text-center">Étiquettes</h1>
+        <h1 class="mb-4 text-light mt-5 text-center">Tags</h1>
         <div class="container bg bg-tags g-4 p-3">
           <% let uniqueTags=new Set(); %>
             <% for (let snippet of snippets) { %>
@@ -30,21 +30,21 @@
         <% } %>
 
           <% if (snippets.length> 0) { %>
-            <h1 class="mb-4 text-light mt-5">Mes Snippets</h1>
+            <h1 class="mb-4 text-light mt-5">My Snippets</h1>
             <div>
-              <% snippets.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); %>
+              <% snippets.sort((a, b)=> new Date(b.createdAt) - new Date(a.createdAt)); %>
                 <% for (let snippet of snippets) { %>
                   <snippet class="col mb-5">
                     <div class="card shadow">
                       <div class="card-body">
                         <h2 class="card-title">
                           <% if (snippet.url && snippet.url.startsWith('https://')) { %>
-                            Titre:
+                            Title:
                             <a target="_blank" class="mt-5 mb-3 text-dark" href="<%= snippet.url %>">
                               <%= snippet.title %>
                             </a>
                             <% } else { %>
-                              Titre:
+                              Title:
                               <span class="mt-5 mb-3 text-dark">
                                 <%= snippet.title %>
                               </span>
@@ -56,7 +56,7 @@
                             <% if (snippet.tags && snippet.tags.length> 0) { %>
                               Tag(s): <%= snippet.tags %>
                                 <% } else { %>
-                                  Il n'y a pas de tags ici!
+                                  There are no tags here!
                                   <% } %>
                           </p>
                         </div>
@@ -65,26 +65,26 @@
                       <div>
                         <p>
                           <% if (snippet.content.trim() !=='' ) { %>
-                            Contenu: <%= snippet.content %>
+                            Content: <%= snippet.content %>
                               <% } else { %>
-                                Il n'y pas de contenu ici!
+                                There is no content here!
                                 <% } %>
                         </p>
                       </div>
                       <div class="card-text">
                         <p>
-                          Créé le : <%= formatDate(snippet.createdAt) %> à <%= formatTime(snippet.createdAt) %>
+                          Created on : <%= formatDate(snippet.createdAt) %> at <%= formatTime(snippet.createdAt) %>
                         </p>
                       </div>
                       <div class="card-footer bg-white">
                         <div class="btn-group" role="group" aria-label="Actions">
                           <a href="/snippet/<%= snippet.id %>" class="btn btn-success"><i class="bi bi-eye"></i>
-                            Voir</a>
+                            View</a>
                           <a href="/edit-snippet/<%= snippet.id %>" class="btn btn-warning"><i class="bi bi-pencil"></
-                                i> Editer</a>
+                                i> Edit</a>
                           <a href="/delete/<%= snippet.id %>" class="btn btn-danger"
-                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce snippet ?')"><i
-                              class="bi bi-trash"></i>Supprimer</a>
+                            onclick="return confirm('Are you sure you want to delete this snippet?')"><i
+                              class="bi bi-trash"></i>Delete</a>
                         </div>
                       </div>
                     </div>
@@ -95,10 +95,10 @@
               <section class="container mt-5">
                 <div class="row justify-content-center">
                   <div class="col-md-6 text-center">
-                    <h1 class="display-4 text-light">:&#40;</h1>
-                    <p class="lead text-light">Il ne semble pas y avoir de snippets pour l'instant !</p>
-                    <a href="add-snippet" class="btn btn-primary"><i class="bi bi-house-door"></i> Je veux créer un
-                      snippet !</a>
+                    <h1 class="display-4 text-light">:(</h1>
+                    <p class="lead text-light">There doesn't seem to be any snippets at the moment!</p>
+                    <a href="add-snippet" class="btn btn-primary"><i class="bi bi-house-door"></i> I want to create a
+                      snippet!</a>
                   </div>
                 </div>
               </section>
@@ -107,8 +107,8 @@
     </main>
 
     <% function formatDate(date) { const options={ weekday: 'long' , year: 'numeric' , month: 'long' , day: 'numeric' };
-      return new Date(date).toLocaleDateString('fr-FR', options); } function formatTime(date) { const options={
-      hour: 'numeric' , minute: 'numeric' }; return new Date(date).toLocaleTimeString('fr-FR',
+      return new Date(date).toLocaleDateString('en-US', options); } function formatTime(date) { const options={
+      hour: 'numeric' , minute: 'numeric' }; return new Date(date).toLocaleTimeString('en-US',
       options).replace(/:\d{2}\s/, ' ' ); } %>
 
       <%- include('includes/end.ejs') %>

@@ -1,16 +1,16 @@
 "use strict";
 
-// Récupère le modèle Snippet
+// Get the Snippet model
 const Snippet = require("../models/snippet");
 
-// Utilise la méthode find() afin de récupérer tous les snippets
-// Retourne un Promesse
+// Use the find() method to retrieve all snippets
+// Returns a Promise
 exports.getSnippets = (req, res, next) => {
   Snippet.find()
     .then((snippets) => {
       res.render("index", {
         snippets: snippets,
-        pageTitle: "Accueil",
+        pageTitle: "Home",
       });
     })
     .catch((err) => {
@@ -20,7 +20,7 @@ exports.getSnippets = (req, res, next) => {
     });
 };
 
-// Récupère un snippet grâce à son id
+// Retrieve a snippet by its id
 exports.getSnippet = (req, res, next) => {
   const snippetId = req.params.snippetId;
   Snippet.findById(snippetId)
@@ -39,7 +39,7 @@ exports.getSnippet = (req, res, next) => {
 
 exports.getAddSnippet = (_req, res) => {
   res.render("add-snippet", {
-    pageTitle: "Ajouter un snippet",
+    pageTitle: "Add a Snippet",
     errorMessage: null,
   });
 };
@@ -63,7 +63,7 @@ exports.createSnippet = (req, res) => {
     })
     .catch((err) => {
       return res.render("add-snippet", {
-        pageTitle: "Ajouter un snippet",
+        pageTitle: "Add a Snippet",
         errorMessage: err.errors,
       });
     });
@@ -74,7 +74,7 @@ exports.getEditSnippet = (req, res, next) => {
   Snippet.findById(snippetId)
     .then((snippet) => {
       res.render("edit-snippet", {
-        pageTitle: "Modifier le snippet",
+        pageTitle: "Edit Snippet",
         snippet: snippet,
         errorMessage: null,
       });
@@ -100,7 +100,7 @@ exports.updateSnippet = (req, res, next) => {
     })
     .catch((err) => {
       return res.render("edit-snippet", {
-        pageTitle: "Modifier le snippet",
+        pageTitle: "Edit Snippet",
         errorMessage: err.errors,
         snippet: {
           _id: snippetId,
@@ -131,7 +131,7 @@ exports.getSnippetsByTag = (req, res) => {
     .then((snippets) => {
       res.render("tag", {
         snippets: snippets,
-        pageTitle: `Snippets avec le tag "${tag}"`,
+        pageTitle: `Snippets with Tag "${tag}"`,
       });
     })
     .catch((err) => {

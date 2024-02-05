@@ -1,8 +1,8 @@
 "use strict";
 
 exports.logErrors = (err, req, res, next) => {
-  console.error(`Il y a une erreur ! ${err.stack}`);
-  res.status(500).send(`Quelque chose ne fonctionne pas!`);
+  console.error(`An error occurred! ${err.stack}`);
+  res.status(500).send(`Something went wrong!`);
 };
 
 exports.get404 = (req, res) => {

@@ -7,40 +7,40 @@ const mongoose = require("mongoose");
 const indexRoutes = require("./routes/index");
 const errorController = require("./controllers/errorController");
 
-// Configuration pour template EJS
+// Configuration for EJS template
 app.set("view engine", "ejs");
-// Déclarer le dossier views qui contient les templates
+// Declare the views folder containing the templates
 // app.set('views', 'views');
 
-// Déclarer le dossier public qui contient les fichiers statiques
+// Declare the public folder containing static files
 app.use(express.static(path.join(__dirname, "public")));
 
-// Déclaration d'un parser pour analyser "le corps (body)" d'une requête entrante avec POST
-// Permet donc d'analyser
+// Declaration of a parser to parse the body of an incoming request with POST
+// Allows to parse
 app.use(
   express.urlencoded({
     extended: false,
   })
 );
 
-// Utilisation des routes en tant que middleware
+// Using routes as middleware
 // route /
 app.use(indexRoutes);
 
-// gestion des erreurs
+// Error handling
 app.use(errorController.logErrors);
 
-// gestion des erreurs 404
+// 404 error handling
 app.use(errorController.get404);
 
 mongoose
-  .connect("mongodb+srv://RaphDou:YmHPbtj8k8DQ6cHt@cluster0.gi4wztj.mongodb.net/?retryWrites=true&w=majority")
+  .connect(
+    "mongodb+srv://RaphDou:YmHPbtj8k8DQ6cHt@cluster0.gi4wztj.mongodb.net/?retryWrites=true&w=majority"
+  )
   .then(() => {
-    console.log("La connexion à la base de données est établie");
-    app.listen(3000, () => {
-      console.log("Le serveur écoute sur le port 3000");
-    });
+    console.log("Connection to the database established");
+    app.listen(3000, () => {});
   })
   .catch((err) => {
-    console.log("La connexion à la base de données a échoué", err);
+    console.log("Connection to the database failed", err);
   });

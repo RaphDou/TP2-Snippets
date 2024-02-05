@@ -45,7 +45,7 @@ exports.getAddSnippet = (_req, res) => {
 };
 
 exports.createSnippet = (req, res) => {
-  const { title, content, tags, url } = req.body;
+  const { title, content, tags, url, description } = req.body;
 
   const tagArray = tags.split(",").map((tag) => tag.trim());
 
@@ -54,6 +54,7 @@ exports.createSnippet = (req, res) => {
     content: content,
     tags: tagArray,
     url: url,
+    description: description, // Ajoutez le champ description
   });
 
   snippet
@@ -68,6 +69,7 @@ exports.createSnippet = (req, res) => {
       });
     });
 };
+
 
 exports.getEditSnippet = (req, res, next) => {
   const snippetId = req.params.snippetId;
@@ -85,7 +87,7 @@ exports.getEditSnippet = (req, res, next) => {
 };
 
 exports.updateSnippet = (req, res, next) => {
-  const { snippetId, title, content, tags, url } = req.body;
+  const { snippetId, title, content, tags, url, description } = req.body;
 
   Snippet.findById(snippetId)
     .then((snippet) => {
@@ -93,6 +95,7 @@ exports.updateSnippet = (req, res, next) => {
       snippet.content = content;
       snippet.tags = tags.split(",").map((tag) => tag.trim());
       snippet.url = url;
+      snippet.description = description; // Mettez à jour le champ description
       return snippet.save();
     })
     .then((result) => {
@@ -108,10 +111,12 @@ exports.updateSnippet = (req, res, next) => {
           content: content,
           tags: tags,
           url: url,
+          description: description, // Assurez-vous de renvoyer également la description dans l'objet snippet
         },
       });
     });
 };
+
 
 exports.deleteSnippet = (req, res, next) => {
   const snippetId = req.params.snippetId;

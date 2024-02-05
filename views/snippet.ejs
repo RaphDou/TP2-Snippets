@@ -1,58 +1,58 @@
 <%- include('includes/head.ejs') %>
 
-    <body>
-        <header>
-            <%- include('includes/navigation.ejs') %>
-        </header>
-        <main class="container mb-5">
-            <div class="row">
-                <div class="col-12 mt-5 mb-5">
-                    <h2 class="card-title text-light">
-                        Title:
+<body>
+    <header>
+        <%- include('includes/navigation.ejs') %>
+    </header>
+    <main class="container mb-5">
+        <div class="row">
+            <div class="col-12 mt-5 mb-5">
+                <h2 class="card-title text-light">
+                    Title:
+                    <% if (snippet.url) { %>
+                    <%= snippet.title %>
+                    <% } else { %>
+                    <span class="mt-5 mb-3 text-light">
+                        <%= snippet.title %>
+                    </span>
+                    <% } %>
+                </h2>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="mt-5 mb-3">
+                            <strong>Description:</strong> <%= snippet.description %>
+                        </p>
                         <% if (snippet.url) { %>
-                            <a target="_blank" class="mt-5 mb-3 text-light" href="<%= snippet.url %>">
-                                <%= snippet.title %>
-                            </a>
-                            <% } else { %>
-                                <%= snippet.title %>
-                                    <% } %>
-                    </h2>
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="mt-5 mb-3">
-                                <strong>Content:</strong> <%= snippet.content %>
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            <p class="mt-5 mb-3">
-                                <strong>Tag:</strong> <%= snippet.tags %>
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            <p class="mt-5 mb-3">
-                                <strong>Created on:</strong> <%= formatDate(snippet.createdAt) %> at <%= formatTime(snippet.createdAt) %>
-                            </p>
-                        </div>
+                        <p class="mt-5 mb-3">
+                            <strong>URL:</strong> <%= snippet.url %>
+                        </p>
+                        <% } %>
+                        <p class="mt-5 mb-3">
+                            <strong>Content:</strong>
+                        </p>
+                        <pre class="mt-5 mb-3" style="white-space: pre-wrap;"><%= snippet.content %></pre>
                     </div>
-                    
+                    <div class="card-body">
+                        <p class="mt-5 mb-3">
+                            <strong>Tag:</strong> <%= snippet.tags %>
+                        </p>
                     </div>
+                    <div class="card-body">
+                        <p class="mt-5 mb-3">
+                            <strong>Created on:</strong> <%= formatDate(snippet.createdAt) %> at <%= formatTime(snippet.createdAt) %>
+                        </p>
+                    </div>
+                    <% if (snippet.url) { %>
+                    <div class="card-footer bg-white">
+                        <a target="_blank" class="btn btn-primary" href="http://<%= snippet.url %>">Visit URL</a>
+                    </div>
+                    <% } %>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <% function formatDate(date) { const options={ weekday: 'long' , year: 'numeric' , month: 'long' ,
-            day: 'numeric' }; return new Date(date).toLocaleDateString('en-US', options); } function formatTime(date) {
-            const options={ hour: 'numeric' , minute: 'numeric' }; return new Date(date).toLocaleTimeString('en-US',
-            options).replace(/:\d{2}\s/, ' ' ); } %>
+    <% function formatDate(date) { const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }; return new Date(date).toLocaleDateString('en-US', options); } function formatTime(date) { const options = { hour: 'numeric', minute: 'numeric' }; return new Date(date).toLocaleTimeString('en-US', options).replace(/:\d{2}\s/, ' '); } %>
 
-            <%- include('includes/end.ejs') %>
-    </body>
-
-    <% function isValidUrl(url) { %>
-        <% try { %>
-            <% new URL(url); %>
-                <% return true; %>
-                    <% } catch (_) { %>
-                        <% return false; %>
-                            <% } %>
-                                <% } %>
+    <%- include('includes/end.ejs') %>
+</body>

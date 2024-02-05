@@ -20,19 +20,21 @@
                     <div class="card">
                         <div class="card-body">
                             <p class="mt-5 mb-3">
-                                Content: <%= snippet.content %>
+                                <strong>Content:</strong> <%= snippet.content %>
                             </p>
                         </div>
                         <div class="card-body">
                             <p class="mt-5 mb-3">
-                                Tag: <%= snippet.tags %>
+                                <strong>Tag:</strong> <%= snippet.tags %>
                             </p>
                         </div>
                         <div class="card-body">
                             <p class="mt-5 mb-3">
-                                Created on: <%= formatDate(snippet.createdAt) %> at <%= formatTime(snippet.createdAt) %>
+                                <strong>Created on:</strong> <%= formatDate(snippet.createdAt) %> at <%= formatTime(snippet.createdAt) %>
                             </p>
                         </div>
+                    </div>
+                    
                     </div>
                 </div>
             </div>

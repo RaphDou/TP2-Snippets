@@ -34,7 +34,7 @@ app.use(errorController.logErrors);
 app.use(errorController.get404);
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/blogueTest1")
+  .connect("mongodb+srv://RaphDou:YmHPbtj8k8DQ6cHt@cluster0.gi4wztj.mongodb.net/?retryWrites=true&w=majority")
   .then(() => {
     console.log("La connexion à la base de données est établie");
     app.listen(3000, () => {

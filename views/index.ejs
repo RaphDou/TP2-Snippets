@@ -10,7 +10,7 @@
     <main class="container mt-3 mb-5 text-center">
         <% if (snippets.length > 0) { %>
             <h1 class="mb-4 text-light mt-5 text-center">Search by Tags</h1>
-            <div class="container bg bg-tags g-4 p-3 mt-3 mb-3">
+            <div class="container bg bg-tags g-4 p-3 mt-3 mb-3 custom-padding">
                 <% let uniqueTags = new Set(); %>
                 <% for (let snippet of snippets) { %>
                     <% if (snippet.tags && snippet.tags.length > 0) { %>
@@ -19,8 +19,9 @@
                         <% } %>
                     <% } %>
                 <% } %>
-                <% if (uniqueTags.size > 0) { %>
-                    <% for (let tag of uniqueTags) { %>
+                <% let sortedTags = Array.from(uniqueTags).sort(); %>
+                <% if (sortedTags.length > 0) { %>
+                    <% for (let tag of sortedTags) { %>
                         <% if (tag.trim() !== '') { %>
                             <a href="/tag/<%= tag %>" class="btn btn-light tag">
                                 <%= tag %>
@@ -41,9 +42,9 @@
                             <div class="card-body">
                                 <h5 class="card-title">
                                     <% if (snippet.url && snippet.url.startsWith('https://')) { %>
-                                        <a target="_blank" class="text-dark" href="<%= snippet.url %>">
+                                        <span class="text-dark">
                                             <%= snippet.title %>
-                                        </a>
+                                        </span>
                                     <% } else { %>
                                         <span class="text-dark">
                                             <%= snippet.title %>
@@ -52,7 +53,7 @@
                                 </h5>
                                 <% if (snippet.url) { %>
                                     <p>
-                                        <strong>URL:</strong> <a target="_blank" href="<%= snippet.url %>"><%= snippet.url %></a>
+                                        <strong>URL:</strong> <%= snippet.url %>
                                     </p>
                                 <% } %>
                                 <!-- Nouvelle section pour afficher la description -->
@@ -89,7 +90,7 @@
             <section class="container mt-5">
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center">
-                        <h1 class="display-4 text-light">:</h1>
+                        <h1 class="display-4 text-light">:(</h1>
                         <p class="lead text-light">There doesn't seem to be any snippets at the moment!</p>
                         <a href="add-snippet" class="btn btn-primary"><i class="bi bi-house-door"></i> I want to create a snippet!</a>
                     </div>

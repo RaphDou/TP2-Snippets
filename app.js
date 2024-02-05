@@ -1,5 +1,7 @@
 "use strict";
 
+require("dotenv").config(); // Charger les variables d'environnement depuis le fichier .env
+
 const path = require("path");
 const express = require("express");
 const app = express();
@@ -35,7 +37,9 @@ app.use(errorController.get404);
 
 mongoose
   .connect(
-    "mongodb+srv://RaphDou:YmHPbtj8k8DQ6cHt@cluster0.gi4wztj.mongodb.net/?retryWrites=true&w=majority"
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${
+      process.env.DB_CLUSTER
+    }/${process.env.DB_NAME}?retryWrites=true&w=majority`
   )
   .then(() => {
     console.log("Connection to the database established");

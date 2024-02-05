@@ -102,3 +102,7 @@ main {
 img{
 border-radius: 5px;
 }
+
+.custom-padding .btn {
+  margin: 0.3rem;
+}
